@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="calc"
+            id="org.eclipse.xtext.calc"
+            name="Calculytor DSL"
+            priority="normal">
+      </content-type>
+   </extension>
+   <extension
+         point="org.eclipse.lsp4e.languageServer">
+      <server
+            class="org.xtext.calc.lsp4e.CalculatorLanguageServer"
+            id="org.eclipse.xtext.calc.server"
+            label="Calculator Language Server">
+      </server>
+      <contentTypeMapping
+            contentType="org.eclipse.xtext.calc"
+            id="org.eclipse.xtext.calc.server">
+      </contentTypeMapping>
+   </extension>
+   <extension
+         point="org.eclipse.ui.genericeditor.presentationReconcilers">
+      <presentationReconciler
+            class="org.eclipse.tm4e.ui.text.TMPresentationReconciler"
+            contentType="org.eclipse.xtext.calc">
+      </presentationReconciler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editorContentTypeBinding
+            contentTypeId="org.eclipse.xtext.calc"
+            editorId="org.eclipse.ui.genericeditor.GenericEditor">
+      </editorContentTypeBinding>
+   </extension>
+   <extension
+         point="org.eclipse.tm4e.registry.grammars">
+      <grammar
+            path="syntaxes/calc.tmLanguage.json"
+            scopeName="text.html.calc">
+      </grammar>
+      <scopeNameContentTypeBinding
+            contentTypeId="org.eclipse.xtext.calc"
+            scopeName="text.html.calc">
+      </scopeNameContentTypeBinding>
+   </extension>
+
+</plugin>
