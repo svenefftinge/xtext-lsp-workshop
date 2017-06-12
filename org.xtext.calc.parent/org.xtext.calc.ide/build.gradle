@@ -12,3 +12,10 @@ shadowJar {
         attributes 'Main-Class': 'org.eclipse.xtext.ide.server.ServerLauncher'
     }
 }
+
+task buildLSP(type: Copy) {
+	from 'build/libs/calculator-language-server.jar'
+	into '../../org.xtext.calc.lsp4e/language-server'
+}
+
+buildLSP.dependsOn shadowJar
