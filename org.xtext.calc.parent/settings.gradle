@@ -1,0 +1,2 @@
+include 'org.xtext.calc'
+include 'org.xtext.calc.ide'

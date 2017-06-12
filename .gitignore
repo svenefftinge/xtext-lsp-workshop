@@ -1,0 +1,7 @@
+.gradle
+.metadata
+bin
+classes
+build
+xtext-gen
+xtend-gen

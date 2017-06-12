@@ -1,0 +1,56 @@
+/**
+ * Copyright (c) 2017 TypeFox GmbH (http://typefox.io)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+grammar org.xtext.calc.Calculator with org.eclipse.xtext.common.Terminals
+
+generate webCalc "http://www.xtext.org/example/webcalc/WebCalc"
+
+Calculation:
+	statements+=Statement*;
+
+Statement:
+	Definition | Evaluation;
+
+AbstractDefinition:
+	Definition | DeclaredParameter;
+
+Definition:
+	native?='native' name=ID isFunction?='(' (params+=DeclaredParameter (',' params+=DeclaredParameter)*)? ')' |
+	'let' name=ID (isFunction?='(' (params+=DeclaredParameter (',' params+=DeclaredParameter)*)? ')')? ':' expression=Expression;
+
+DeclaredParameter:
+	name=ID;
+
+Evaluation:
+	expression=Expression;
+
+Expression:
+	Addition;
+
+Addition returns Expression:
+	Multiplication ->({BinaryExpression.left=current} operator=('+' | '-') right=Multiplication)*;
+
+Multiplication returns Expression:
+	UnaryExpression ({BinaryExpression.left=current} operator=('*' | '/') right=UnaryExpression)*;
+
+UnaryExpression returns Expression:
+	({UnaryExpression} operator='-' expression=PrimaryExpression) |
+	PrimaryExpression;
+
+PrimaryExpression returns Expression:
+	'(' Expression ')' |
+	NumberLiteral |
+	FeatureCall;
+	
+FeatureCall :
+	feature=[AbstractDefinition] ->('(' (args+=Expression (',' args+=Expression)*)? ')')?;
+
+NumberLiteral:
+	value=Number;
+
+Number:
+	INT ('.' INT)?;
