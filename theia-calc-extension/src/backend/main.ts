@@ -28,7 +28,6 @@ class StaticServer implements BackendApplicationContribution {
 (() => {
     const container = new Container();
     container.load(calcServerModule);
-    console.log('CALC SERVER MODULE', calcServerModule)
     container.load(applicationModule);
     container.load(messagingModule);
     container.load(fileSystemServerModule);
