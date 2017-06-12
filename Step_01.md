@@ -1,21 +1,21 @@
 # Environment and Project setup
 
 To start with the tutorial, you'll need a fresh Eclipse Oxygen with the latest Xtext 2.12 release installed.
-Also at löeast Java 8 JDK is required to be installed on you machine.
+Also at least Java 8 JDK is required to be installed on you machine.
 
 ## Prerequisites / Install Eclipse
 
 You can download the Eclipse distribution from here : 
    https://www.eclipse.org/downloads/index-developer.php (before the oxygen release)
 
-If you pick the "Eclipse IDE for Java and DSL Developers" you should be all set, otherwise please install "Xtext SDK" from the oxygen updatesite.
+If you pick the "Eclipse IDE for Java and DSL Developers" you should be all set, otherwise please install "Xtext SDK" from the oxygen update-site.
 
 ## Creating the projects
 
 Creating the set of projects (or modules) for your Xtext Language Server is very easy, as it is supported by the Eclipse Wizard.
 From the main menu please choose _File -> New -> Project..._. In the opened dialog you need to select _Xtext Project_ and click _Next_.
 
-Next up we need to give the project as well as our language a name. In addirion the file extension for our language needs to be specified. IF you don't want to get out of sync with the tutorial, you should provide the following values:
+Next up we need to give the project as well as our language a name. In addition the file extension for our language needs to be specified. IF you don't want to get out of sync with the tutorial, you should provide the following values:
 
 ![Wizard Page #1](img/wizard_01.png)
 
@@ -40,12 +40,12 @@ Here you will find the grammar and other core language constructs, that are need
 
 ### org.xtext.calc.ide
 
-This project contains tool specific features, that you don't usually need when using a language implementation at runtime, e.g. to execute and interpreter. But only if you use it to support an editor. Examples of functonality that should go here is:
+This project contains tool specific features, that you don't usually need when using a language implementation at runtime, e.g. to execute and interpreter. But only if you use it to support an editor. Examples of functionality that should go here is:
   - content assist
   - hover
   - method signature helper
 
-You don't neccessarily need to split the two project, but could lump them together if you feel two projects are too much for this. But the wizard creates it like that by default.
+You don't necessarily need to split the two project, but could lump them together if you feel two projects are too much for this. But the wizard creates it like that by default.
 
 ### org.xtext.calc.parent
 
@@ -53,7 +53,7 @@ The parent project for the other two modules explained above.
 
 ## Define the grammar
 
-The wozard should have opened the grammar file for you already. From the start it conatins a tiny hello-world-example, that we now want to replace with our calculation DSL.
+The wozard should have opened the grammar file for you already. From the start it contains a tiny hello-world-example, that we now want to replace with our calculation DSL.
 
 For this tutorial we don't want to go into too detail about how the Xtext grammar language works. If you want to learn more, please [check out the documentation](https://eclipse.org/Xtext/documentation/301_grammarlanguage.html).
 
@@ -111,7 +111,7 @@ Number:
 
 ## Configure the Xtext generator
 
-We also have changed the `mwe2` file a bit to fit our needs. Specifically we don't need a stub for the scopeprovider (we use the default scopeing) and the generator (we will later implement an interpreter, instead).
+We also have changed the `mwe2` file a bit to fit our needs. Specifically we don't need a stub for the scope provider (we use the default scoping) and the generator (we will later implement an interpreter, instead).
 
 Here are the relevant changes:
 
