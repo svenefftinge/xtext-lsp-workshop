@@ -3,3 +3,12 @@ dependencies {
 	compile "org.eclipse.xtext:org.eclipse.xtext.ide:${xtextVersion}"
 	compile "org.eclipse.xtext:org.eclipse.xtext.xbase.ide:${xtextVersion}"
 }
+
+shadowJar {
+    baseName = 'calculator-language-server'
+    classifier = null
+    version = null
+    manifest {
+        attributes 'Main-Class': 'org.eclipse.xtext.ide.server.ServerLauncher'
+    }
+}
