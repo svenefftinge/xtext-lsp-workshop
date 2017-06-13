@@ -15,7 +15,10 @@ export class CalcServerContribution extends BaseLanguageServerContribution {
     public name: string = 'CALC';
 
     start(clientConnection: IConnection): void {
-        const serverConnection = this.createProcessStreamConnection('java', ['-jar', LS_SERVER_JAR_PATH]);
+        const serverConnection = this.createProcessStreamConnection('java', 
+            [   '-Xdebug', 
+                '-Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=n,quiet=y',
+                '-jar', LS_SERVER_JAR_PATH]);
         this.forward(clientConnection, serverConnection);
     }
 

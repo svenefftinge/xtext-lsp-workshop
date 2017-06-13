@@ -7,6 +7,10 @@
  */
 package org.xtext.calc.validation
 
+import org.eclipse.xtext.validation.Check
+import org.xtext.calc.webCalc.Definition
+import org.xtext.calc.webCalc.FeatureCall
+import org.xtext.calc.webCalc.WebCalcPackage
 
 /**
  * This class contains custom validation rules. 
@@ -15,15 +19,17 @@ package org.xtext.calc.validation
  */
 class CalculatorValidator extends AbstractCalculatorValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					CalculatorPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	public static val FUNCTION_CALL_ARGUMENTS_MISSING = 'function_call_arguments_missing'
+
+	@Check
+	def checkFunctionCallArgumentsAreMissing(FeatureCall call) {
+		switch f : call.feature {
+			Definition case f.params.size !== call.args.size : {
+				error('''The definition «f.name»(«f.params.join(', ')[name]») needs to be called with «f.params.size» arguments.''', 
+						WebCalcPackage.Literals.FEATURE_CALL__FEATURE,
+						FUNCTION_CALL_ARGUMENTS_MISSING)
+			}
+		}
+	}
 	
 }
