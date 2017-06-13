@@ -2,6 +2,9 @@ dependencies {
 	compile project(':org.xtext.calc')
 	compile "org.eclipse.xtext:org.eclipse.xtext.ide:${xtextVersion}"
 	compile "org.eclipse.xtext:org.eclipse.xtext.xbase.ide:${xtextVersion}"
+	
+	testCompile "junit:junit:4.12"
+	testCompile "org.eclipse.xtext:org.eclipse.xtext.testing:${xtextVersion}"
 }
 
 shadowJar {

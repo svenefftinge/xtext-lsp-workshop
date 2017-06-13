@@ -7,9 +7,15 @@
  */
 package org.xtext.calc.ide
 
+import org.eclipse.xtext.ide.server.signatureHelp.ISignatureHelpService
 
 /**
  * Use this class to register ide components.
  */
 class CalculatorIdeModule extends AbstractCalculatorIdeModule {
+	
+	def Class<? extends ISignatureHelpService> bindISignatureHelpService() {
+		return SignatureHelpService
+	}
+	
 }
