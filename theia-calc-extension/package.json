@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "theia-calc-extension",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "scripts": {
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "tsc && npm run build:ls-jar && cp -R src/examples lib/backend/examples",
+    "build:frontend": "webpack && cp src/frontend/index.html lib/frontend",
+    "build:ls-jar": "../org.xtext.calc.parent/gradlew -p ../org.xtext.calc.parent/ shadowJar",
+    "start": "concurrently --names backend,frontend --prefix \"[{name}]\" \"npm run start:backend\" \"npm run start:frontend\" ",
+    "start:backend": "node ./lib/backend/main.js -- --root-dir=./lib/backend/examples",
+    "start:frontend": "webpack-dev-server --open",
+    "clean": "rimraf lib"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "inversify": "^3.1.0",
+    "monaco-editor": "^0.8.3",
+    "monaco-editor-core": "^0.8.2",
+    "reflect-metadata": "^0.1.10",
+    "theia-core": "0.0.1-alpha.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
+    "file-loader": "^0.11.2",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.4",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}

@@ -1,6 +1,6 @@
 ## Packaging as a Language Server
 
-A language server simply is a process that a tool can execute and communicate with over JSON-RPC. Most often the processe's input and ouput streams are used to send over the messages, but once can also use a socket.
+A language server simply is a process that a tool can execute and communicate with over JSON-RPC. Most often the process' input and output streams are used to send over the messages, but once can also use a socket.
 
 To start our language server we need to provide an executable. Xtext is running on the JVM, so we need to make it easy to start a Java process. I used the shadowJar gradle plugin to create a so called _uberJar_ for our application that contains all upstream dependencies. So we can run it by executing `java -jar calculator-language-server.jar`.
 
