@@ -8,9 +8,7 @@
 package org.xtext.calc.validation
 
 import org.eclipse.xtext.validation.Check
-import org.xtext.calc.webCalc.Definition
 import org.xtext.calc.webCalc.FeatureCall
-import org.xtext.calc.webCalc.WebCalcPackage
 
 /**
  * This class contains custom validation rules. 
@@ -23,13 +21,7 @@ class CalculatorValidator extends AbstractCalculatorValidator {
 
 	@Check
 	def checkFunctionCallArgumentsAreMissing(FeatureCall call) {
-		switch f : call.feature {
-			Definition case f.params.size !== call.args.size : {
-				error('''The definition «f.name»(«f.params.join(', ')[name]») needs to be called with «f.params.size» arguments.''', 
-						WebCalcPackage.Literals.FEATURE_CALL__FEATURE,
-						FUNCTION_CALL_ARGUMENTS_MISSING)
-			}
-		}
+		
 	}
 	
 }
