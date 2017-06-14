@@ -1,8 +1,9 @@
-connection.arguments=
+#Wed Jun 14 08:28:44 CEST 2017
 connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
-connection.gradle.user.home=null
 connection.java.home=null
-connection.jvm.arguments=
-connection.project.dir=..
+connection.gradle.user.home=null
+connection.arguments=
 eclipse.preferences.version=1
+connection.jvm.arguments=
 project.path=\:org.xtext.calc.ide
+connection.project.dir=..
