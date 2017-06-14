@@ -16,7 +16,6 @@ let r: a / 2
 let aSquare: square(a)
 let aCircle: circle(r)
 
-/** Evaluate the value of the area difference by hitting Shift + Enter. */
 aSquare - aCircle
 
 cube(a) - sphere(r)

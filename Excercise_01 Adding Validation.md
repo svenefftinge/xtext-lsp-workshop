@@ -5,7 +5,75 @@ Our language allows to call symbols defined elsewhere. Those definitions may def
 
 ## Solution : Implement a Validation Rule
 
-The Xtetx generator already provided us with a stub, to put in validation rules. To check any feature calls we can put the following code in place:
+The Xtext generator already provided us with a stub, to put in validation rules. To add a check for all feature calls we need to add a check for them:
+
+```{xtend}
+    // the constant issue code, for our compiler check
+	public static val FUNCTION_CALL_ARGUMENTS_MISSING = 'function_call_arguments_missing'
+
+	@Check
+	def checkFunctionCallArgumentsAreMissing(FeatureCall call) {
+		// ... logic goes here
+	}
+```
+
+It's a good idea to develop such enhancements in a test-driven way. Xtext provides good test utilities for most of these enhancements. Before we try to implment the check we should add one or more test cases that should initially fail.
+
+To do so, you should create a fresh Xtend class Within the `org.xtext.calc` project's `src/test/java` source folder.
+In the following you can find the code that includes three test cases for the cvalidation we want to create.
+
+```{xtend}
+package org.xtext.calc.tests
+
+import com.google.inject.Inject
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.testing.util.ParseHelper
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.xtext.calc.validation.CalculatorValidator
+import org.xtext.calc.webCalc.Calculation
+import org.xtext.calc.webCalc.WebCalcPackage
+
+@InjectWith(CalculatorInjectorProvider)
+@RunWith(XtextRunner)
+class ValidationTest {
+
+	@Inject ParseHelper<Calculation> parser
+	@Inject ValidationTestHelper validator
+
+	@Test def void testArgumentsNotExported_01() {
+		val model = parser.parse(''' 
+			let foo(a) : a * a
+			foo
+		''')
+		validator.assertError(model, WebCalcPackage.Literals.FEATURE_CALL,
+			CalculatorValidator.FUNCTION_CALL_ARGUMENTS_MISSING)
+	}
+
+	@Test def void testArgumentsNotExported_02() {
+		val model = parser.parse(''' 
+			let foo(a) : a * a
+			foo(21)
+		''')
+		validator.assertNoErrors(model)
+	}
+
+	@Test def void testArgumentsNotExported_03() {
+		val model = parser.parse(''' 
+			let foo(a) : a * a
+			foo(1,2)
+		''')
+		validator.assertError(model, WebCalcPackage.Literals.FEATURE_CALL,
+			CalculatorValidator.FUNCTION_CALL_ARGUMENTS_MISSING)
+	}
+
+}
+
+```
+
+## Full Solution
 
 ```{xtend}
 	public static val FUNCTION_CALL_ARGUMENTS_MISSING = 'function_call_arguments_missing'
@@ -21,9 +89,6 @@ The Xtetx generator already provided us with a stub, to put in validation rules.
 		}
 	}
 ```
-
-It's a good idea to develop such enhancements in a test-driven way. Xtext provides good test utilities for most of these enhancements. 
-IF you are not sure how to do it yourself, please have a look at [the test for the validation method](org.xtext.calc.parent/org.xtext.calc/src/test/java/org/xtext/calc/tests/ValidationTest.xtend).
 
 ## Test in one of the LSP clients
 
