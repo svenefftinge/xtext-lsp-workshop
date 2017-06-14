@@ -71,3 +71,11 @@ npm run start
 You can attch a debugger to the language server executed by Theia, using the launch config 
  - _'debug-language-server-theia'_.
  To kill the process and start a new one you simply need to refresh the browser.
+
+## Run VSCode
+You need to run the gradle build within the `org.xtext.calc.parent` folder. To do so, please execute the following commands:
+```
+cd org.xtext.calc.parent
+./gradlew startCode
+```
+The server is contained inside the VSCode extension and will start automatically.
