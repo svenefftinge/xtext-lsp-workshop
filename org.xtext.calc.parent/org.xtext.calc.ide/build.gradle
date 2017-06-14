@@ -1,3 +1,4 @@
+apply plugin: 'application'
 dependencies {
 	compile project(':org.xtext.calc')
 	compile "org.eclipse.xtext:org.eclipse.xtext.ide:${xtextVersion}"
@@ -23,3 +24,22 @@ task buildLSP(type: Copy) {
 }
 
 buildLSP.dependsOn shadowJar
+
+// Add a start script for the socket case
+mainClassName = 'org.xtext.calc.ide.RunServer'
+startScripts {
+	applicationName = 'calc-socket'
+}
+
+// Add another start script for the standalone / self-contained case
+task standaloneStartScript(type: CreateStartScripts) {
+	mainClassName = 'org.eclipse.xtext.ide.server.ServerLauncher'
+	applicationName = 'calc-standalone'
+	outputDir = new File(project.buildDir, 'scripts')
+	classpath = jar.outputs.files + project.configurations.runtime
+}
+
+applicationDistribution.into("bin") {
+	from(standaloneStartScript)
+	fileMode = 0755
+}
