@@ -17,6 +17,8 @@ public class CalculatorLanguageServer extends ProcessStreamConnectionProvider {
 	public CalculatorLanguageServer() {
 		List<String> commands = new ArrayList<>();
 		commands.add("java");
+		commands.add("-Xdebug");
+		commands.add("-Xrunjdwp:server=y,transport=dt_socket,address=4001,suspend=n,quiet=y");
 		commands.add("-jar");
 		Bundle bundle = Activator.getDefault().getBundle();
 		URL resource = bundle.getResource("/language-server/calculator-language-server.jar");

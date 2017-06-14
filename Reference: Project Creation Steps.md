@@ -3,13 +3,6 @@
 To start with the tutorial, you'll need a fresh Eclipse Oxygen with the latest Xtext 2.12 release installed.
 Also at least Java 8 JDK is required to be installed on you machine.
 
-## Prerequisites / Install Eclipse
-
-You can download the Eclipse distribution from here : 
-   https://www.eclipse.org/downloads/index-developer.php (before the oxygen release)
-
-If you pick the "Eclipse IDE for Java and DSL Developers" you should be all set, otherwise please install "Xtext SDK" from the oxygen update-site.
-
 ## Creating the projects
 
 Creating the set of projects (or modules) for your Xtext Language Server is very easy, as it is supported by the Eclipse Wizard.
