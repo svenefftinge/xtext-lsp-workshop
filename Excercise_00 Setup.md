@@ -15,13 +15,15 @@ Make sure you have a Java 8 JDK installed on your machine.
 ### Node.js
 Node.js (with npm) should be installed on the system and should be available from the path. Windows users can download an installer from [here](https://nodejs.org/dist/v7.9.0/). If you are on OS X, you can use [`homebrew`](https://brew.sh) to install Node.js and [nvm](https://github.com/creationix/nvm). Once you have `homebrew` installed on your system, execute the following commands to install Node.js.
 
-```brew install nvm
+```
+brew install nvm
 nvm install 7
 nvm use 7
 ```
 
 Verify your Node.js and npm installation with the following steps.
-```node -v && npm -v
+```
+node -v && npm -v
 ```
 
 ### Compiling native modules

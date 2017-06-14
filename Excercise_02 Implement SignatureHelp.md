@@ -1,5 +1,7 @@
 # Excercise: Implement SignatureHelp
 
+To get started, please checkout the branch called `Excercise_02`.
+
 It's time for the first LSP specific feature implementation: 
 
 ## Signature Help
