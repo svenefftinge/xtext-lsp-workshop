@@ -1,3 +1,4 @@
 include 'org.xtext.calc'
 include 'org.xtext.calc.ide'
 include 'vscode-calc-extension'
+include 'theia-calc-extension'

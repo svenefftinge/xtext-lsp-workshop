@@ -1,0 +1,17 @@
+apply plugin: 'com.moowork.node'
+
+def inputFiles = fileTree(
+	dir: projectDir, 
+	excludes: [ 'out/**', '.gitignore', '.gradle/**', 'build/**', '*.gradle' ]
+)
+
+npmInstall {
+	inputs.files(inputFiles)
+	outputs.dir('out')
+}
+	
+task startTheia(type: NpmTask, dependsOn: npmInstall) {
+	group 'Node'
+	description 'Starts Theia'
+	args = [ 'run', 'start' ]
+}
