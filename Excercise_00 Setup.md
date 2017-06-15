@@ -58,7 +58,7 @@ The language server is executed in a separate java process. So if you want to de
 ## Run Theia
 
 Alternatively you can run the langauge server in Theia.
-For that you need to ex3ecute the following commands:
+For that you need to execute the following commands:
 
 ```
 cd theia-calc-extension
