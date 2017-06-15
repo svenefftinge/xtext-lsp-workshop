@@ -9,8 +9,14 @@ npmInstall {
 	inputs.files(inputFiles)
 	outputs.dir('out')
 }
+
+task npmRunBuild(type: NpmTask, dependsOn: [npmInstall]) {
+	group 'Node'
+	description 'Builds Theia'
+	args = [ 'run', 'build' ]
+}
 	
-task startTheia(type: NpmTask, dependsOn: npmInstall) {
+task startTheia(type: NpmTask, dependsOn: [npmRunBuild]) {
 	group 'Node'
 	description 'Starts Theia'
 	args = [ 'run', 'start' ]
