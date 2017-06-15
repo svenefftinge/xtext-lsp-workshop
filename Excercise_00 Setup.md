@@ -48,7 +48,7 @@ cd org.xtext.calc.parent
 
 ## Run LSP4E
 
-You can now start the LSP4E plug-in using the preconfigured launch config _"Run LSP4E plug-in"_. It will spawn a new eclipse pointing to an example project.
+You can now start the LSP4E plug-in using the preconfigured launch config _"Run LSP4E plug-in"_. It will spawn a new eclipse. Import the project "example-workspace/example-project" located in the project "org.xtext.calc.lsp4e".
 
 You should be able to open the editors using the _generic editor_. The editor should provide some langauge features like, diagnostics, find references or content assist.
 
