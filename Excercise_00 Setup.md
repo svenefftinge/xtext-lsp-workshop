@@ -43,12 +43,14 @@ After cloning and importing the projects into your workspace you should see the 
 Next up you need to run the gradle build within the `org.xtext.calc.parent` folder. To do so, please execute the following commands:
 ```
 cd org.xtext.calc.parent
-./gradlew buildLSP
+./gradlew build
 ```
 
 ## Run LSP4E
 
 You can now start the LSP4E plug-in using the preconfigured launch config _"Run LSP4E plug-in"_. It will spawn a new eclipse. Import the project "example-workspace/example-project" located in the project "org.xtext.calc.lsp4e".
+
+In addition you need to launch the language server using the launch config _"Run Language Server"_. Cou can either launch it in debug mode or not.
 
 You should be able to open the editors using the _generic editor_. The editor should provide some langauge features like, diagnostics, find references or content assist.
 
@@ -66,6 +68,8 @@ npm install
 npm run build
 npm run start
 ```
+
+Again you need to start the language server using the dedicated launch config (_"Run Language Server"_)within Eclipse.
 
 ## Debugging the language server in Theia
 You can attch a debugger to the language server executed by Theia, using the launch config 
