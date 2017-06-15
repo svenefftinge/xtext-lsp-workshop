@@ -3,7 +3,7 @@
 To get started, please checkout the branch called `Excercise_01`.
 
 At this point you should have the projects checked out and should have been able to start one of the available editors to try the _Calculator DSL_. Here comes the first real excercise :) 
-Our language allows to call symbols defined elsewhere. Those definitions may define parameters. We need to validate any defintion refreence to provide the correct number of arguments.
+Our language allows you to call symbols defined elsewhere. Those definitions may define parameters. We need to validate any defintion reference to provide the correct number of arguments.
 
 ## Solution : Implement a Validation Rule
 
@@ -19,7 +19,7 @@ The Xtext generator already provided us with a stub, to put in validation rules.
 	}
 ```
 
-It's a good idea to develop such enhancements in a test-driven way. Xtext provides good test utilities for most of these enhancements. Before we try to implment the check we should add one or more test cases that should initially fail.
+It's a good idea to develop such enhancements in a test-driven way. Xtext provides good test utilities for most of these enhancements. Before we try to implement the check we should add one or more test cases that should initially fail.
 
 To do so, you should create a fresh Xtend class Within the `org.xtext.calc` project's `src/test/java` source folder.
 In the following you can find the code that includes three test cases for the cvalidation we want to create.
