@@ -11,7 +11,7 @@ npmInstall {
 }
 
 task npmInstallVsce(type: NpmTask, dependsOn: npmSetup) {
-	ext.destPath = "$rootProject.projectDir/node_modules/vsce" 
+	ext.destPath = "$projectDir/node_modules/vsce" 
 	outputs.dir(destPath)
 	group 'Node'
 	description 'Installs the NodeJS package "Visual Studio Code Extension Manager"'
@@ -21,7 +21,7 @@ task npmInstallVsce(type: NpmTask, dependsOn: npmSetup) {
 plugins.withType(com.moowork.gradle.node.NodePlugin) {
 	node {
 		workDir = file("$rootProject.buildDir/nodejs")
-		nodeModulesDir = rootProject.projectDir
+		nodeModulesDir = projectDir
 	}
 }
 
