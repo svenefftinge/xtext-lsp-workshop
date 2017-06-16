@@ -26,6 +26,13 @@ Please unzip and start the downloaded Eclipse.
 You can now import the eclipse projects, by using the `Import Existing Projects`-Wizard.
 You might need to do a clean build after importing.
 
+## Set the target platform
+
+The LSP4E plug.in needs additional plugins on the classpath, which you need to add to the target platform.
+To do so, open the `Preferences` and therein `Plug-in Development/Target Platform`.
+
+You should see an entry called `LSP4E Target Platform`. Please activate and apply.
+
 ## Start the language server
 
 We have configured all the clients to connect to the language server via a socket. 
