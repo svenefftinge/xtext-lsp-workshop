@@ -1,6 +1,6 @@
 # Setup
 
-Before we can go into any excercises we need to make sure that you have the repository cloned and that your machine is setup properly. Specifically you need to have the following installed:
+Before we can go into any exercises we need to make sure that you have the repository cloned and that your machine is setup properly. Specifically you need to have the following installed:
 
 ## Clone the repository and run the  build
 
@@ -54,7 +54,7 @@ To see the language server running in [Theia](https://github.com/theia-ide/theia
 
 ### VsCode
 
-Please make sure the language Server is running by using the `Run Language Server` launch config from within Eclipse if not already done.
+Please make sure the Language Server is running by using the `Run Language Server` launch config from within Eclipse if not already done.
 VSCode needs to be installed in advance from [here](https://code.visualstudio.com/download).
 After that execute the following task in the parent project.
 ```
