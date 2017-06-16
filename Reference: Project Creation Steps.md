@@ -46,7 +46,7 @@ The parent project for the other two modules explained above.
 
 ## Define the grammar
 
-The wozard should have opened the grammar file for you already. From the start it contains a tiny hello-world-example, that we now want to replace with our calculation DSL.
+The wizard should have opened the grammar file for you already. From the start it contains a tiny hello-world-example, that we now want to replace with our calculation DSL.
 
 For this tutorial we don't want to go into too detail about how the Xtext grammar language works. If you want to learn more, please [check out the documentation](https://eclipse.org/Xtext/documentation/301_grammarlanguage.html).
 
@@ -282,6 +282,6 @@ buildLSP.dependsOn shadowJar
 
 ## Adding a TextMate Grammar
 
-Since lexical syntax coloring is not provided by the language server protocol, we need to provide it manually. Therefore we have added a syntax defintion file, using the TextMate grammar language.
+Since lexical syntax coloring is not provided by the language server protocol, we need to provide it manually. Therefore we have added a syntax definition file, using the TextMate grammar language.
 
 Have a look [here](org.xtext.calc.lsp4e/syntaxes/calc.tmLanguage.json)
