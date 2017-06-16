@@ -1,8 +1,8 @@
-# Excercise: Validate Function Calls
+# Exercise: Validate Function Calls
 
-To get started, please checkout the branch called `Excercise_01`.
+To get started, please checkout the branch called `Exercise_01`.
 
-At this point you should have the projects checked out and should have been able to start one of the available editors to try the _Calculator DSL_. Here comes the first real excercise :) 
+At this point you should have the projects checked out and should have been able to start one of the available editors to try the _Calculator DSL_. Here comes the first real exercise :) 
 Our language allows you to call symbols defined elsewhere. Those definitions may define parameters. We need to validate any defintion reference to provide the correct number of arguments.
 
 ## Solution : Implement a Validation Rule
