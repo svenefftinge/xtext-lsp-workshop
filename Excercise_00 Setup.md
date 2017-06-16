@@ -54,9 +54,11 @@ To see the language server running in [Theia](https://github.com/theia-ide/theia
 
 ### VsCode
 
-To see the language server running in VSCode, you need to execute the following gradle task.
+Please make sure the language Server is running by using the `Run Language Server` launch config from within Eclipse if not already done.
+VSCode needs to be installed in advance from [here](https://code.visualstudio.com/download).
+After that execute the following task in the parent project.
 ```
  ./gradlew startCode
 ```
 
-Also you need to have VS Code installed on your system.
+VSCode will come up with the extension already installed.

@@ -1,20 +1,24 @@
 'use strict';
 
-import * as path from 'path';
-import * as os from 'os';
+import * as net from 'net';
 
 import {Trace} from 'vscode-jsonrpc';
 import { workspace, ExtensionContext } from 'vscode';
-import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient';
+import { LanguageClient, LanguageClientOptions, StreamInfo } from 'vscode-languageclient';
 
 export function activate(context: ExtensionContext) {
-    // The server is a locally installed in src/calc
-    let launcher = os.platform() === 'win32' ? 'calc-standalone.bat' : 'calc-standalone';
-    let script = context.asAbsolutePath(path.join('src', 'calc', 'bin', launcher));
-    
-    let serverOptions: ServerOptions = {
-        run : { command: script },
-        debug: { command: script, args: ['-Xdebug','-Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n,quiet=y','-Xmx256m'] }
+    // The server is a started as a separate app and listens on port 5007
+    let connectionInfo = {
+        port: 5007
+    };
+    let serverOptions = () => {
+        // Connect to language server via socket
+        let socket = net.connect(connectionInfo);
+        let result: StreamInfo = {
+            writer: socket,
+            reader: socket
+        };
+        return Promise.resolve(result);
     };
     
     let clientOptions: LanguageClientOptions = {

@@ -1,19 +1,48 @@
 apply plugin: 'com.moowork.node'
 
-task copyApplication(type: Sync) {
-    def installDistTask = project(':org.xtext.calc.ide').tasks.installDist
-    dependsOn installDistTask
-    from installDistTask.outputs
-    into 'src/calc'
+def inputFiles = fileTree(
+	dir: projectDir, 
+	excludes: [ 'out/**', '.gitignore', '.gradle/**', 'build/**', '*.gradle' ]
+)
+
+npmInstall {
+	inputs.files(inputFiles)
+	outputs.dir('out')
 }
 
-clean {
-    doLast {
-        delete copyApplication.outputs
-    }
+task npmInstallVsce(type: NpmTask, dependsOn: npmSetup) {
+	ext.destPath = "$projectDir/node_modules/vsce" 
+	outputs.dir(destPath)
+	group 'Node'
+	description 'Installs the NodeJS package "Visual Studio Code Extension Manager"'
+	args = [ 'install', 'vsce' ]
 }
-npmInstall.dependsOn copyApplication
 
+plugins.withType(com.moowork.gradle.node.NodePlugin) {
+	node {
+		workDir = file("$rootProject.buildDir/nodejs")
+		nodeModulesDir = projectDir
+	}
+}
+
+task vscodeExtension(dependsOn: [npmInstall, npmInstallVsce], type: NodeTask) {
+	ext.destDir = new File(buildDir, 'vscode')
+	ext.archiveName = "$project.name-${project.version}.vsix"
+	ext.destPath = "$destDir/$archiveName"
+	inputs.with {
+		files inputFiles
+		dir npmInstallVsce.destPath
+	}
+	outputs.dir destDir
+	doFirst {
+		destDir.mkdirs()
+	}
+	script = file("$npmInstallVsce.destPath/out/vsce")
+	args = [ 'package', '--out', destPath ]
+	execOverrides {
+		workingDir = projectDir
+	}
+}
 task installExtension(type: Exec, dependsOn: vscodeExtension) {
     if (System.properties['os.name'].toLowerCase().contains('windows')) {
         commandLine 'code.cmd'
@@ -31,3 +60,4 @@ task startCode(type:Exec, dependsOn: installExtension) {
     }
     args "$rootProject.projectDir/demo/", '--new-window'
 }
+
