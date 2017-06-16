@@ -12,4 +12,9 @@ package org.xtext.calc
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class CalculatorRuntimeModule extends AbstractCalculatorRuntimeModule {
+	
+	override bindIQualifiedNameProvider() {
+		QualifiedNameProvider
+	}
+	
 }
