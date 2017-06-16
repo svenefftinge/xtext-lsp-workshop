@@ -45,56 +45,6 @@ subprojects {
 	}
 }
 
-task npmInstallVsce(type: NpmTask, dependsOn: npmSetup) {
-	ext.destPath = "$rootProject.projectDir/node_modules/vsce" 
-	outputs.dir(destPath)
-	group 'Node'
-	description 'Installs the NodeJS package "Visual Studio Code Extension Manager"'
-	args = [ 'install', 'vsce' ]
-}
-
-// Configuration for vscode projects
-configure(subprojects.findAll { it.name.startsWith('vscode') }) {
-
-	apply plugin: 'com.moowork.node'
-
-	def inputFiles = fileTree(
-		dir: projectDir, 
-		excludes: [ 'out/**', '.gitignore', '.gradle/**', 'build/**', '*.gradle' ]
-	)
-
-	npmInstall {
-		inputs.files(inputFiles)
-		outputs.dir('out')
-	}
-
-	task vscodeExtension(dependsOn: [npmInstall, npmInstallVsce], type: NodeTask) {
-		ext.destDir = new File(buildDir, 'vscode')
-		ext.archiveName = "$project.name-${project.version}.vsix"
-		ext.destPath = "$destDir/$archiveName"
-		inputs.with {
-			files inputFiles
-			dir npmInstallVsce.destPath
-		}
-		outputs.dir destDir
-		doFirst {
-			destDir.mkdirs()
-		}
-		script = file("$npmInstallVsce.destPath/out/vsce")
-		args = [ 'package', '--out', destPath ]
-		execOverrides {
-			workingDir = projectDir
-		}
-	}
-}
-
-plugins.withType(com.moowork.gradle.node.NodePlugin) {
-	node {
-		workDir = file("$rootProject.buildDir/nodejs")
-		nodeModulesDir = rootProject.projectDir
-	}
-}
-
 // Workaround for issue https://github.com/researchgate/gradle-release/issues/144
 task build {
 	dependsOn subprojects.findResults { it.tasks.findByName('build') }
