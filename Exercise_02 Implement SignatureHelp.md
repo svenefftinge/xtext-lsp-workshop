@@ -1,4 +1,4 @@
-# Excercise: Implement SignatureHelp
+# Exercise: Implement SignatureHelp
 
 To get started, please checkout the branch called `Excercise_02`.
 
@@ -9,13 +9,13 @@ It's time for the first LSP specific feature implementation:
 Signature Help is usually represented as a hover that pops up in the context of a function call. It should provide information about the available arguments and if supported by the different overloads. It can shows what parameters exist, whether they are optional and what there default values are. Also it marks the currently active parameter.
 Here is an example of it in action:
 
-Our language allows to call symbols defined elsewhere. Those definitions may define parameters. We need to validate any defintion refreence to provide the correct number of arguments.
+Our language allows to call symbols defined elsewhere. Those definitions may define parameters. We need to validate any definition reference to provide the correct number of arguments.
 
 ![Signature Help](img/signature_help.gif)
 
 ## Signature Help for Calculator DSL
 
-In our DSL we have simple function calls, without overloads or default values. The excercise is to implement the `ISignatureHelpService`specifically for the Calculator DSL, such that it guides the user when providing arguments.
+In our DSL we have simple function calls, without overloads or default values. The exercise is to implement the `ISignatureHelpService`specifically for the Calculator DSL, such that it guides the user when providing arguments.
 
 # Solution
 
@@ -46,7 +46,7 @@ class DefaultIdeModule extends AbstractGenericModule {
 
 ## Step 2 : Writing a test
 
-Again it makes sense to write a test first, so we know what we want to achieve and have a setup that allows us to debug the implmentation with fast turn arounds.
+Again it makes sense to write a test first, so we know what we want to achieve and have a setup that allows us to debug the implementation with fast turn arounds.
 
 Xtext provides a very convenient base class to test language server functionality, which we will use here.
 
@@ -94,7 +94,7 @@ For our implementation we need to detect
 
 Another approach is to go over the parseResult of the provided `XtextResource`, e.g. you get access to the root node, that contains and spans all other parse nodes with this code `resource.parseResult.rootNode`.
 
-On a node you can ask for shildren, for leafnodes, for actual offets and lengths as well as obtain the associated semantic element (aka AST object).
+On a node you can ask for children, for leafnodes, for actual offsets and lengths as well as obtain the associated semantic element (aka AST object).
 
 
 ## !!!! Solution
