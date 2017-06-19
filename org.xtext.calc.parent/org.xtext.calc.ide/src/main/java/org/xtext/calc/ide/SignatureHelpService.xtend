@@ -46,7 +46,6 @@ import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
 	}
 
 	private def SignatureHelp getSignatureHelp(FeatureCall featureCall, Definition definition, int offset) {
-		val separators = newArrayList
 		var activeParameter = 0
 		for (node : featureCall.node.children) {
 			if (node.text == '(' && node.offset >= offset) {
@@ -54,7 +53,6 @@ import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
 			} else if (node.text == ')' && node.offset < offset) {
 				return EMPTY
 			} else if (node.text == ',') {
-				separators.add(node)
 				if (node.offset < offset) {
 					activeParameter++
 				}
