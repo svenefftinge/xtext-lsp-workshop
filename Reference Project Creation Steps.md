@@ -12,7 +12,7 @@ Next up we need to give the project as well as our language a name. In addition 
 
 ![Wizard Page #1](img/wizard_01.png)
 
-On the next page, you can configure your project. We don't want an Eclipse plug-in, nor native support for intellij or web, as we are going to implement the LSP. Also we want to use Gradle as the build system and the maven/gradle source layout.
+On the next page, you can configure your project. We don't want an Eclipse plug-in, nor native support for IntelliJ or web, as we are going to implement the LSP. Also we want to use Gradle as the build system and the maven/gradle source layout.
 
 ![Wizard Page #2](img/wizard_02.png)
 
@@ -162,7 +162,7 @@ class CalculatorParsingTest {
 			/** Calculates the area of a square. */
 			let square(a): pow(a, 2)
 			
-			/** Calculates the area of a cirecle based on the radius argument. */
+			/** Calculates the area of a circle based on the radius argument. */
 			let circle(r): PI * pow(r, 2)
 			
 			/** Returns with the volume of a cube. */
@@ -238,7 +238,7 @@ The first thing we need to do is to create a plug-in project, with an Activator.
 
 ## Register our language server
 
-Since our language server is implemented in Java, we could run it in the main eclipse process. However, to be more inline with the general usage pattern of LSP4E we will start anither java process from within this plug-in.
+Since our language server is implemented in Java, we could run it in the main eclipse process. However, to be more inline with the general usage pattern of LSP4E we will start another java process from within this plug-in.
 
 Hooking up a language server is pretty easy, we only need to create a subclass of `ProscessStreamConnectionProvider` and tell it about the command to be executed to launch the LS process.
 
@@ -269,7 +269,7 @@ public class CalculatorLanguageServer extends ProcessStreamConnectionProvider {
 
 ```
 
-As you can see we reference a jarthat should be located in the plugin itself. We enhanced the original gradle script in `org.xtext.calc.ide` to copy over the jar after it gets created with the following:
+As you can see we reference a jar that should be located in the plugin itself. We enhanced the original gradle script in `org.xtext.calc.ide` to copy over the jar after it gets created with the following:
 
 ```{Gradle}
 task buildLSP(type: Copy) {
