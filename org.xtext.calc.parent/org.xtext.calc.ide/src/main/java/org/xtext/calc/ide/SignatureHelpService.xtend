@@ -18,8 +18,6 @@ import org.eclipse.xtext.resource.XtextResource
 import org.xtext.calc.webCalc.Definition
 import org.xtext.calc.webCalc.FeatureCall
 
-import static com.google.common.collect.Lists.newArrayList
-
 import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
 
 /**
