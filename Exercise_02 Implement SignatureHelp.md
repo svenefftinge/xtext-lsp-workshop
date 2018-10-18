@@ -21,7 +21,7 @@ In our DSL we have simple function calls, without overloads or default values. T
 
 # Step 1 : Class creation and binding
 
-Within the `org.xtext.calc.ide` project, create a new class `SignatureHelpService` and bind it in the `DefaultIdeModule`.
+Within the `org.xtext.calc.ide` project, create a new class `SignatureHelpService` and bind it in the `CalculatorIdeModule`.
 
 ```{xtend}
 class SignatureHelpService implements ISignatureHelpService {
